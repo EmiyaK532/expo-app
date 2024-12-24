@@ -1,74 +1,111 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { Theme } from "@/constants/Theme";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function WelcomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+    <ThemedView style={styles.container}>
+      <Image
+        source={require("@/assets/images/welcome-illustration.png")}
+        style={styles.illustration}
+      />
+
+      <ThemedView style={styles.contentContainer}>
+        <ThemedText type="title" style={styles.title}>
+          让我们开始管理你的待办事项
         </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
+
+        <ThemedText style={styles.subtitle}>
+          在笔记中记录待办事项，管理你的日常优先任务，实现你的目标。
         </ThemedText>
+
+        <Link href="/tasks" asChild>
+          <TouchableOpacity style={styles.getStartedButton}>
+            <ThemedText style={styles.buttonText}>开始使用</ThemedText>
+          </TouchableOpacity>
+        </Link>
+
+        <ThemedView style={styles.signInContainer}>
+          <ThemedText>已有账号？</ThemedText>
+          <Link href="/signin">
+            <ThemedText style={styles.signInText}>登录</ThemedText>
+          </Link>
+        </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  illustration: {
+    width: "100%",
+    height: 300,
+    resizeMode: "contain",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  contentContainer: {
+    flex: 1,
+    padding: 24,
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "800",
+    textAlign: "center",
+    marginBottom: 16,
+    letterSpacing: 0.5,
+  },
+  subtitle: {
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: "center",
+    marginBottom: 32,
+    color: Theme.colors.textSecondary,
+    paddingHorizontal: 20,
+  },
+  getStartedButton: {
+    backgroundColor: Theme.global.primary,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 16,
+    width: "100%",
+    alignItems: "center",
+    shadowColor: Theme.global.primary,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "700",
+    letterSpacing: 0.5,
+  },
+  signInContainer: {
+    flexDirection: "row",
+    marginTop: 32,
+    backgroundColor: Theme.colors.card,
+    padding: 16,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  signInText: {
+    color: Theme.global.primary,
+    fontWeight: "600",
   },
 });
