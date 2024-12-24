@@ -6,13 +6,10 @@ import { ThemedView } from "@/components/ThemedView";
 import { Theme } from "@/constants/Theme";
 
 export default function WelcomeScreen() {
-  // 创建动画值
   const [scaleAnim] = useState(new Animated.Value(1));
-  const [fadeAnim] = useState(new Animated.Value(1));
 
-  // 处理点击事件
   const handlePress = () => {
-    // 按钮缩放动画
+    // 只保留按钮的缩放动画
     Animated.sequence([
       Animated.timing(scaleAnim, {
         toValue: 0.95,
@@ -24,21 +21,14 @@ export default function WelcomeScreen() {
         duration: 100,
         useNativeDriver: true,
       }),
-    ]).start();
-
-    // 页面淡出动画
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => {
-      // 动画结束后进行导航
-      router.push("/tasks");
+    ]).start(() => {
+      // 动画结束后使用 replace 而不是 push
+      router.replace("/tasks");
     });
   };
 
   return (
-    <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+    <ThemedView style={styles.container}>
       <Image
         source={require("@/assets/images/welcome-illustration.png")}
         style={styles.illustration}
@@ -77,7 +67,7 @@ export default function WelcomeScreen() {
           </Link>
         </ThemedView>
       </ThemedView>
-    </Animated.View>
+    </ThemedView>
   );
 }
 
