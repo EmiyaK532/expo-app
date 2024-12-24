@@ -1,109 +1,180 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { Theme } from "@/constants/Theme";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+const TASK_GROUPS = [
+  {
+    id: 1,
+    title: "重要任务",
+    tasks: [
+      {
+        id: 1,
+        title: "客户会议",
+        time: "09:00 - 10:00",
+        date: "2024年3月25日",
+        priority: "high",
+      },
+      {
+        id: 2,
+        title: "项目评审",
+        time: "14:00 - 15:00",
+        date: "2024年3月25日",
+        priority: "high",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "进行中任务",
+    tasks: [
+      {
+        id: 3,
+        title: "移动端界面设计",
+        time: "11:00 - 12:00",
+        date: "2024年3月25日",
+        priority: "medium",
+      },
+      {
+        id: 4,
+        title: "原型设计",
+        time: "15:00 - 16:00",
+        date: "2024年3月25日",
+        priority: "medium",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "待处理任务",
+    tasks: [
+      {
+        id: 5,
+        title: "文档整理",
+        time: "16:00 - 17:00",
+        date: "2024年3月25日",
+        priority: "low",
+      },
+      {
+        id: 6,
+        title: "周报撰写",
+        time: "17:00 - 18:00",
+        date: "2024年3月25日",
+        priority: "low",
+      },
+    ],
+  },
+];
 
-export default function TabTwoScreen() {
+export default function ExploreScreen() {
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case "high":
+        return Theme.global.danger;
+      case "medium":
+        return Theme.global.primary;
+      case "low":
+        return Theme.global.success;
+      default:
+        return Theme.global.primary;
+    }
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.header}>
+        <ThemedText style={styles.headerTitle}>任务视图</ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+
+      <ScrollView style={styles.content}>
+        {TASK_GROUPS.map((group) => (
+          <ThemedView key={group.id} style={styles.taskGroup}>
+            <ThemedText style={styles.groupTitle}>{group.title}</ThemedText>
+            {group.tasks.map((task) => (
+              <TouchableOpacity key={task.id}>
+                <ThemedView style={styles.taskCard}>
+                  <ThemedView style={styles.taskHeader}>
+                    <ThemedText style={styles.taskTitle}>
+                      {task.title}
+                    </ThemedText>
+                    <ThemedView
+                      style={[
+                        styles.priorityIndicator,
+                        { backgroundColor: getPriorityColor(task.priority) },
+                      ]}
+                    />
+                  </ThemedView>
+                  <ThemedText style={styles.taskTime}>{task.time}</ThemedText>
+                  <ThemedText style={styles.taskDate}>{task.date}</ThemedText>
+                </ThemedView>
+              </TouchableOpacity>
+            ))}
+          </ThemedView>
+        ))}
+      </ScrollView>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: Theme.colors.background,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  header: {
+    padding: Theme.spacing.large,
+    paddingTop: 40,
+    backgroundColor: Theme.colors.card,
+    ...Theme.shadow.small,
+  },
+  headerTitle: {
+    fontSize: Theme.fontSize.xxlarge,
+    fontWeight: "bold",
+    color: Theme.colors.text,
+  },
+  content: {
+    flex: 1,
+    padding: Theme.spacing.medium,
+  },
+  taskGroup: {
+    marginBottom: Theme.spacing.large,
+  },
+  groupTitle: {
+    fontSize: Theme.fontSize.large,
+    fontWeight: "600",
+    marginBottom: Theme.spacing.medium,
+    color: Theme.colors.text,
+  },
+  taskCard: {
+    backgroundColor: Theme.colors.card,
+    borderRadius: Theme.borderRadius.medium,
+    padding: Theme.spacing.medium,
+    marginBottom: Theme.spacing.small,
+    ...Theme.shadow.small,
+  },
+  taskHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: Theme.spacing.small,
+  },
+  taskTitle: {
+    fontSize: Theme.fontSize.large,
+    fontWeight: "500",
+    color: Theme.colors.text,
+  },
+  priorityIndicator: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+  },
+  taskTime: {
+    fontSize: Theme.fontSize.medium,
+    color: Theme.colors.textSecondary,
+    marginBottom: 4,
+  },
+  taskDate: {
+    fontSize: Theme.fontSize.medium,
+    color: Theme.colors.textSecondary,
   },
 });
