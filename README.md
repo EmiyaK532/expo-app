@@ -1,6 +1,9 @@
 # Expo Todo App 📝
 
+![alt text](assets/display/home.png)
 这是一个基于 [Expo](https://expo.dev) 开发的待办事项应用，使用 [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) 创建。
+![alt text](assets/display/task-view.png)
+![alt text](assets/display/task-home.png)
 
 ## 功能特点
 
@@ -66,14 +69,6 @@ expo-app/
 - [Expo 文档](https://docs.expo.dev/)
 - [React Native 文档](https://reactnative.dev/docs/getting-started)
 - [TypeScript 文档](https://www.typescriptlang.org/docs/)
-
-## 贡献指南
-
-1. Fork 项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
 
 ## 许可证
 
