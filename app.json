@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.howhite.expoapp"
     },
     "web": {
       "bundler": "metro",
@@ -29,9 +30,17 @@
     "experiments": {
       "typedRoutes": true
     },
-    "assets": ["./assets/images/"],
+    "assets": [
+      "./assets/images/"
+    ],
     "extra": {
-      "githubClientId": "Ov23liqi6EYSYdX00RLf"
+      "githubClientId": "Ov23liqi6EYSYdX00RLf",
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d0c2c22c-7691-4a45-9b8b-095aaab5f373"
+      }
     }
   }
 }

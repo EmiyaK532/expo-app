@@ -1,50 +1,80 @@
-# Welcome to your Expo app 👋
+# Expo Todo App 📝
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+这是一个基于 [Expo](https://expo.dev) 开发的待办事项应用，使用 [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) 创建。
 
-## Get started
+## 功能特点
 
-1. Install dependencies
+- 🎨 支持亮色/暗色主题
+- 🔐 GitHub 和微信第三方登录
+- 📱 响应式设计，支持多平台
+- 🔄 任务管理与状态同步
+- 💫 流畅的动画效果
+
+## 开始使用
+
+1. 安装依赖
 
    ```bash
-   npm install
+   pnpm install
    ```
 
-2. Start the app
+2. 配置环境变量
+
+   在项目根目录创建 `.env` 文件：
+
+   ```
+   EXPO_PUBLIC_GITHUB_CLIENT_ID=你的GitHub客户端ID
+   EXPO_PUBLIC_WECHAT_APP_ID=你的微信AppID
+   ```
+
+3. 启动项目
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## 开发环境
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+你可以选择以下方式运行应用：
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- 📱 [Expo Go](https://expo.dev/go)：快速预览和开发
+- 📱 [开发构建](https://docs.expo.dev/develop/development-builds/introduction/)：完整功能测试
+- 🤖 [Android 模拟器](https://docs.expo.dev/workflow/android-studio-emulator/)
+- 🍎 [iOS 模拟器](https://docs.expo.dev/workflow/ios-simulator/)
 
-## Get a fresh project
+## 项目结构
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+expo-app/
+├── app/                # 应用页面和路由
+├── assets/            # 静态资源
+├── components/        # 可复用组件
+├── constants/         # 常量定义
+├── hooks/            # 自定义 Hooks
+└── types/            # TypeScript 类型定义
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 技术栈
 
-## Learn more
+- [Expo](https://expo.dev)
+- [React Native](https://reactnative.dev)
+- [TypeScript](https://www.typescriptlang.org)
+- [Expo Router](https://docs.expo.dev/router/introduction)
 
-To learn more about developing your project with Expo, look at the following resources:
+## 学习资源
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- [Expo 文档](https://docs.expo.dev/)
+- [React Native 文档](https://reactnative.dev/docs/getting-started)
+- [TypeScript 文档](https://www.typescriptlang.org/docs/)
 
-## Join the community
+## 贡献指南
 
-Join our community of developers creating universal apps.
+1. Fork 项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
